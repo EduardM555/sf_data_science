@@ -1,0 +1,55 @@
+from time import time
+import numpy as np
+
+# print('Hello world')
+# num = input()
+# print (num.capitalize)
+
+
+# def dec_func(func):
+#     def dec(*args, **kvargs):
+#         print('Args =', args)
+#         print('KVargs =', kvargs)
+#         result = func(*args, **kvargs)
+#         print('Result =', result)
+#         return result
+#     return dec
+
+
+def new_new_dec(n):
+    def dec_func(func):
+        def dec(*args, **kvargs):
+            # duraton = 0
+            print('Args =', args)
+            print('KVargs =', kvargs)
+            start = time() * 1000
+            for i in range(n):
+                # start = time() * 1000
+                result = func(*args, **kvargs)
+                # end = time() * 1000
+                # delta = end - start
+                # duraton += delta
+            end = time() * 1000
+            delta = end - start
+            avg = delta / n
+            print('Result =', avg)
+            return delta
+        return dec
+    return dec_func
+
+@new_new_dec(1000000)
+def root(x, y):
+    result = x ** y
+    return result
+
+super_root = new_new_dec(root)
+print(root(81, 1/4))
+
+start = time() * 1000
+print(start)
+for i in range(10000):
+    result = 3**i
+end = time() * 1000
+print(end)
+print(end - start)
+
